@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+
+		<div class="jumbotron mb-0">
+			<h1 class="display-4">Novo Pedido</h1>
+		</div>
+
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+			 <div class="navbar-nav">
+				<a class="nav-item nav-link active" href="/home">Todos</a>
+				<a class="nav-item nav-link" href="">Aguardando</a>
+				<a class="nav-item nav-link" href="">Aprovado</a>
+				<a class="nav-item nav-link" href="">Entregue</a>
+			</div>
+			<a href="/pedido/formulario"><button class="btn btn-outline-secondary" type="link">Novo</button></a>
+		</nav>
+
+		<div class="card">
+			<form th:action="@{/pedido/novo}" th:object="${requisicaoNovoPedido}"class="card-body" action="/pedido/novo" method="POST">
+				<div class="form-group">
+					<label for="nomeProduto">Produto</label>
+					<input th:field="*{nomeProduto}" th:errorclass="is-invalid" placeholder="nome do produto" class="form-control">
+					<small>Informe qual o nome do produto</small>
+					<div class="invalid-feedback" th:erros="*{nomeProduto}">
+						Campo não pode ser vazio
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="urlProduto">URL do Produto</label>
+					<input th:field="*{urlProduto}" placeholder="url do produto" class="form-control">
+					<small>Procure em um site o produto que você deseja e cole a url aqui</small>
+				</div>
+
+				<div class="form-group">
+					<label for="urlImagem">Imagem</label>
+					<input th:field="*{urlImagem}" placeholder="url da imagem" class="form-control">
+					<small>Copie a url de uma boa imagem do produto e cole a url aqui</small>
+				</div>			
+
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<textarea name="descricao" placeholder="Adicione detalhes importantes" class="form-control">
+					</textarea>
+				</div>
+				<button class="btn btn-primary" type="submit">Cadastrar</button>
+
+			</form>
+
+		</div>
+
+
+
+
+</body>
+</html>
